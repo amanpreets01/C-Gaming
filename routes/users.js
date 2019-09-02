@@ -7,6 +7,7 @@ const MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 const url = require('url');
 var sess;
+var crypto = require('crypto');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -23,12 +24,15 @@ router.post('/login',(req,res,next)=>{
 	 	client.db(process.env.DB).collection("register").findOne({'email_add':det.email})
 	 	.then((doc) => {
 			if(doc.password == det.password){
-				sess = det.email;
-				return res.redirect('/user/games');
+				sess = det;
+				var user_id = det.email+det.password;
+				var hash = crypto.createHash('sha256').update(user_id).digest('base64')
+				hash = hash.split('/')[0];
+				return res.redirect('/user/games/'+hash);
 				next();
 				}
 			else{
-				res.redirect('/user/login');
+				res.redirect('/');
 			}
 		}).catch((err) => {
 			console.log(err);
@@ -57,9 +61,13 @@ router.post('/signup' , (req , res) => {
 
 });
 
-router.get('/games' , (req , res) => {
-	console.log(sess);
-	res.json('Got');
+router.get('/games/:user_id' , (req , res) => {
+	if(sess == null){
+		return res.redirect('/');
+	}
+	else{
+		res.send(req.params.user_id);
+	}
 
 })
 
