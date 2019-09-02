@@ -1,5 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
+const router = express.Router();
+var session =require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -22,15 +24,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(router);
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/games',gameRouter);
-
+require('dotenv').config()
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+app.use(session({secret: 'qwerty'}));
 
 // error handler
 app.use(function(err, req, res, next) {
