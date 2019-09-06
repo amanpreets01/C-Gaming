@@ -25,7 +25,7 @@ router.post('/login' , (req,res,next)=>{
 			if(doc.password == det.password){
 				console.log(doc);
 				session = req.session;
-				
+				session.email = det.email;
 				var user_id = det.email+det.password;
 				var hash = crypto.createHash('sha256').update(user_id).digest('base64')
 				hash = hash.split('/')[0];
