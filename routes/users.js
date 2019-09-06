@@ -6,15 +6,14 @@ var mongo_url = require('./../db/mongo_connection.js');
 const MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
 const url = require('url');
-var sess;
 var crypto = require('crypto');
-
+var session;
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('users.hbs');
 });
 
-router.post('/login',(req,res,next)=>{
+router.post('/login' , (req,res,next)=>{
 	var det = new Form({
 		email : req.body.email,
 		password : req.body.password
@@ -24,10 +23,13 @@ router.post('/login',(req,res,next)=>{
 	 	client.db(process.env.DB).collection("register").findOne({'email_add':det.email})
 	 	.then((doc) => {
 			if(doc.password == det.password){
-				sess = det;
+				console.log(doc);
+				session = req.session;
+				
 				var user_id = det.email+det.password;
 				var hash = crypto.createHash('sha256').update(user_id).digest('base64')
 				hash = hash.split('/')[0];
+				session.user_id = hash;
 				return res.redirect('/user/games/'+hash);
 				next();
 				}
@@ -62,13 +64,28 @@ router.post('/signup' , (req , res) => {
 });
 
 router.get('/games/:user_id' , (req , res) => {
-	if(sess == null){
+	console.log(session.user_id);
+	if(session.user_id == ''){
 		return res.redirect('/');
 	}
 	else{
-		res.send(req.params.user_id);
+		user_id = req.params.user_id;
+		MongoClient.connect(mongo_url ,(err , client) => {
+			client.db('games').collection('user_games').findOne({user_id})
+			.then((doc) => {
+				if(doc == null){
+					res.render('games' , {'self_games' : 'Empty . Purchase some to play some'})
+				}
+				else{
+					console.log(doc);
+					res.render('games' , {'self_games' : doc.games});
+				}
+			})
+			.catch(err => console.log(err));
+
+		});
 	}
 
-})
+});
 
 module.exports = router;
