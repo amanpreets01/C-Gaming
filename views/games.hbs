@@ -10,11 +10,19 @@
   {{> nav}}
   <div class="container">
     {{> header}}
+    ALL_GAMES
     <ul>
       
-      {{#all_games}}
-        <li>{{name}}   <a href="/purchase/{{name}}">Purchase</a></li>
-      {{/all_games}}
+      {{#each all_games}}
+        <li>{{this}}   <a href="/purchase/{{this}}">Purchase</a></li>
+      {{/each}}
+    </ul>
+    Purchased
+    <ul>
+      
+      {{#each purchased}}
+        <li>{{this}} </li>
+      {{/each}}
     </ul>
     {{> footer}}
   </div>

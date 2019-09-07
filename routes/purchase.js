@@ -12,9 +12,9 @@ router.get('/:game_name' , (req , res) => {
 	else{
 		MongoClient.connect(mongo_url , (err , client) => {
 			console.log('GAme'+game_name);
-			client.db('games').collection('user_games').updateOne({
+			client.db('games').collection('user_games').insert({
 				'email' : req.session.email,
-				'game' : [game_name]
+				'game' : game_name
 				}).then((doc) => {
 					console.log('Saved successful');
 				}).catch(err => console.log(err));
