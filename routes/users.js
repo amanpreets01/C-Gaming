@@ -63,7 +63,11 @@ router.post('/signup' , (req , res) => {
 
 });
 router.get('/games/:user_id' , (req , res , next) => {
-	
+		console.log(authenticated , req.session.email)
+		if(req.session.email != null){
+			authenticated = true;
+		}
+		console.log(authenticated);
 		MongoClient.connect(mongo_url , (err, client) => {
 		console.log(req.session.email);
 		client.db('games').collection('all_games').find({}).toArray(function(err, doc) {
@@ -95,7 +99,7 @@ router.get('/games/:user_id' , (req , res , next) => {
 
 			console.log(all_games);
 
-			res.render('games' , {all_games , purchased});
+			res.render('games' , {all_games , purchased , authenticated});
 			});
 		});
 });

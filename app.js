@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var gameRouter = require('./routes/games');
 var purchaseRouter = require('./routes/purchase');
 var session ;
+var authenticated = false;
 var app = express();
 
 // view engine setup

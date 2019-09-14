@@ -3,18 +3,13 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var mongo_url = require('./../db/mongo_connection');
 var sess;
-var intersect = function (a, b) {
-  var setA = new Set(a);
-  var setB = new Set(b);
-  var intersection = new Set([...setA].filter(x => setB.has(x)));
-  return Array.from(intersection);
-};
-purchased = []
-all_games = []
+
+purchased = [];
+all_games = [];
 
 
 router.get('/' , (req , res , next) => {
-	
+		
 		MongoClient.connect(mongo_url , (err, client) => {
 		console.log(req.session.email);
 		client.db('games').collection('all_games').find({}).toArray(function(err, doc) {
@@ -46,7 +41,10 @@ router.get('/' , (req , res , next) => {
 
 			console.log(all_games);
 
-			res.render('games' , {all_games , purchased});
+			res.render('games' , {all_games : all_games , 
+								purchased : purchased , 
+								authenticated : authenticated});
+			
 			});
 		});
 });
