@@ -12,14 +12,17 @@ router.get('/:game_name' , (req , res) => {
 	else{
 		MongoClient.connect(mongo_url , (err , client) => {
 			console.log('GAme'+game_name);
+			
 			client.db('games').collection('user_games').insert({
 				'email' : req.session.email,
 				'game' : game_name
 				}).then((doc) => {
 					console.log('Saved successful');
+					return res.redirect('/user/games/'+req.session.user_id);
 				}).catch(err => console.log(err));
 		});
-		res.json(req.session.email);
+
+
 
 	}
 });

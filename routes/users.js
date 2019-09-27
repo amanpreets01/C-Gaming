@@ -28,6 +28,7 @@ router.post('/login' , (req,res,next)=>{
 				console.log(doc);
 				session = req.session;
 				session.email = det.email;
+				session.password = det.password;
 				var user_id = det.email+det.password;
 				var hash = crypto.createHash('sha256').update(user_id).digest('base64')
 				hash = hash.split('/')[0];
