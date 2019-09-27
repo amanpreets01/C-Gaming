@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 const url = require('url');
 var crypto = require('crypto');
 var session;
+all_games = [];
+purchased = [];
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('users.hbs');
@@ -98,8 +100,10 @@ router.get('/games/:user_id' , (req , res , next) => {
 			}
 
 			console.log(all_games);
-
 			res.render('games' , {all_games , purchased , authenticated});
+
+			all_games = [];
+			purchased = [];
 			});
 		});
 });
