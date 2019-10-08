@@ -8,7 +8,6 @@ var logger = require('morgan');
 var hbs = require('hbs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var gameRouter = require('./routes/games');
 var purchaseRouter = require('./routes/purchase');
 var session ;
 var authenticated = false;
@@ -30,7 +29,6 @@ app.use(session({ resave: true ,secret: '123456' , saveUninitialized: true}));
 app.use(router);
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
-app.use('/games',gameRouter);
 app.use('/purchase' , purchaseRouter);
 require('dotenv').config()
 // catch 404 and forward to error handler

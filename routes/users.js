@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 const url = require('url');
 var crypto = require('crypto');
 var session;
+all_games = [];
+purchased = [];
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('users.hbs');
@@ -26,6 +28,7 @@ router.post('/login' , (req,res,next)=>{
 				console.log(doc);
 				session = req.session;
 				session.email = det.email;
+				session.password = det.password;
 				var user_id = det.email+det.password;
 				var hash = crypto.createHash('sha256').update(user_id).digest('base64')
 				hash = hash.split('/')[0];
@@ -98,8 +101,10 @@ router.get('/games/:user_id' , (req , res , next) => {
 			}
 
 			console.log(all_games);
-
 			res.render('games' , {all_games , purchased , authenticated});
+
+			all_games = [];
+			purchased = [];
 			});
 		});
 });
