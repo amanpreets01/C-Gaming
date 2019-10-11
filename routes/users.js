@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 var Form = require('./../models/form');
@@ -107,6 +108,11 @@ router.get('/games/:user_id' , (req , res , next) => {
 			purchased = [];
 			});
 		});
+});
+
+router.get('/test',(req,res) => {
+	res.render('test');
+
 });
 
 module.exports = router;
