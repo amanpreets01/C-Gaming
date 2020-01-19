@@ -12,6 +12,7 @@ var purchaseRouter = require('./routes/purchase');
 var session ;
 var authenticated = false;
 var app = express();
+var connection = require('./sockets/connection');
 
 // view engine setup
 app.set('view engine', 'hbs');
