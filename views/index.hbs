@@ -298,14 +298,23 @@
     <script src="./../js/form-validator.min.js"></script>
     <script src="./../js/contact-form-script.js"></script>   
     <script src="./../js/main.js"></script>
-      <script src="/socket.io/socket.io.js"></script> 
+      <script src="./../socket.io/socket.io.js"></script> 
         <script> 
         var socket=io() 
         // make connection with server from user side 
         socket.on('connect', function(){ 
-        console.log('Connected to Server') 
-
+        console.log('Connected to Server');
         }); 
+
+        socket.emit('createMsg' ,  {
+          "to" : "server",
+          "from" : "client"
+        });
+
+
+
+
+
         </script> 
   </body>
 </html>
