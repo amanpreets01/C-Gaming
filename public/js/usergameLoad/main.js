@@ -12,4 +12,14 @@ function newWindow(game_name){
 
     }
 
-    
+
+var socket=io() 
+// make connection with server from user side 
+socket.on('connect', function(){ 
+console.log('Connected to Server');
+}); 
+
+socket.emit('createMsg' ,  {
+  "to" : "server",
+  "from" : "client"
+});
