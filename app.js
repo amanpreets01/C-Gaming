@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 const router = express.Router();
+var http = require('http');
 var session =require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -12,7 +13,10 @@ var purchaseRouter = require('./routes/purchase');
 var session ;
 var authenticated = false;
 var app = express();
-var connection = require('./sockets/connection');
+var socket = require('socket.io');
+var io = socket(server);
+
+var server = http.createServer(app);
 
 // view engine setup
 app.set('view engine', 'hbs');
@@ -47,5 +51,26 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error.hbs' , {title : "error occured"});
 });
+
+io.on('connection' , (socket) => {
+	console.log('USer connected');
+	socket.emit('newMsg' , {
+		name : 'User',
+		msg : 'Hello'
+	});
+
+	socket.on('createMsg' ,(newMsg) => {
+		console.log('Msg received' , newMsg);
+	});
+
+
+	socket.on('disconnect' , () => {
+		console.log('User disconnected');
+	})
+
+});
+
+
+
 
 module.exports = app;
