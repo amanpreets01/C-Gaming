@@ -7,7 +7,7 @@
 	 <link rel="stylesheet" type="text/css" href="./../public/stylesheets/index.css">
   <script src="player/js/majhdwplayer.js"></script>
   <script src="player/js/html5.hdwplayer.js"></script>
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
     function newWindow(game_name){
       console.log(game_name);
       var myWindow = window.open("#",'_blank', "MsgWindow", "titlebar=yes,fullscreen=yes,width=500,height=500");
@@ -19,8 +19,14 @@
       */
       //myWindow.document.write(' <iframe src="../test"></iframe> ')
       myWindow.document.write('<iframe src="./../test" height="100%" width="100%"></iframe>')
+
     }
+  </script> -->
+  <script type="text/javascript">
+    console.log('{{user_id}}')
   </script>
+  <script type="text/javascript" src =  "./../../socket.io/socket.io.js" ></script>"></script>
+  <script type="text/javascript" src="./../../js/usergameLoad/main.js"></script>
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <style>
@@ -57,12 +63,13 @@
     <hr>
     <div class="row">
       {{#each purchased}}
+
               <div class="col-sm-4">
               <div class="card" style="width: 18rem;">
               <img class="card-img-top" src="https://i.ytimg.com/vi/tID0e8piECI/maxresdefault.jpg" alt="Card image cap">
               <div class="card-body">
               <h5 class="card-title">{{this}}</h5>
-              <a href="#" onclick="newWindow('{{this}}')" id="play" class="btn btn-primary">Play</a>
+              <a href="/play" target="_blank" onclick="newWindow('{{this}}' , '{{../user_id}}' )" id="play" class="btn btn-primary">Play</a>
             </div>
           </div>
     </div>

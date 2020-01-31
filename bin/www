@@ -2,7 +2,10 @@ var app = require('../app');
 var debug = require('debug')('c-gaming:server');
 var http = require('http');
 
+<<<<<<< HEAD
 var socket = require('socket.io');
+=======
+>>>>>>> 546be8d375fb4cc7a92a2b013990a0a7f8383004
 
 /**
  * Get port from environment and store in Express.
@@ -21,6 +24,31 @@ var io = socket(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+ /*Trying sockets on app */
+var socketIO = require('socket.io');
+var io = socketIO(server);
+
+
+io.on('connection' , (socket) => {
+
+  console.log('User connected');
+
+  socket.emit('newMsg' , {
+    "from" : "helloBOI" , 
+    "to" : "master"
+  });
+
+  socket.on('createMsg' , (newMsg) => {
+    console.log(newMsg);
+  });
+
+  socket.on('disconnect' , () => {
+    console.log('DIscconed');
+  })
+});
+
+
 
 server.listen(port);
 server.on('error', onError);

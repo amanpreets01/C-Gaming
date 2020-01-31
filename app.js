@@ -10,13 +10,17 @@ var hbs = require('hbs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var purchaseRouter = require('./routes/purchase');
+var downloadRouter = require('./routes/download');
 var session ;
 var authenticated = false;
 var app = express();
+<<<<<<< HEAD
 var socket = require('socket.io');
 var io = socket(server);
 
 var server = http.createServer(app);
+=======
+>>>>>>> 546be8d375fb4cc7a92a2b013990a0a7f8383004
 
 // view engine setup
 app.set('view engine', 'hbs');
@@ -36,6 +40,7 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/purchase' , purchaseRouter);
 require('dotenv').config()
+app.use('/download_script' , downloadRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -52,6 +57,7 @@ app.use(function(err, req, res, next) {
   res.render('error.hbs' , {title : "error occured"});
 });
 
+<<<<<<< HEAD
 io.on('connection' , (socket) => {
 	console.log('USer connected');
 	socket.emit('newMsg' , {
@@ -74,3 +80,8 @@ io.on('connection' , (socket) => {
 
 
 module.exports = app;
+=======
+
+
+module.exports = app;
+>>>>>>> 546be8d375fb4cc7a92a2b013990a0a7f8383004
