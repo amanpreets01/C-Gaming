@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('c-gaming:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -24,6 +25,31 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+ /*Trying sockets on app */
+var socketIO = require('socket.io');
+var io = socketIO(server);
+
+
+io.on('connection' , (socket) => {
+
+  console.log('User connected');
+
+  socket.emit('newMsg' , {
+    "from" : "helloBOI" , 
+    "to" : "master"
+  });
+
+  socket.on('createMsg' , (newMsg) => {
+    console.log(newMsg);
+  });
+
+  socket.on('disconnect' , () => {
+    console.log('DIscconed');
+  })
+});
+
+
 
 server.listen(port);
 server.on('error', onError);

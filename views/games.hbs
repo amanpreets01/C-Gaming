@@ -3,7 +3,11 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>C-Gaming</title>
-  <script type="text/javascript">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	 <link rel="stylesheet" type="text/css" href="./../public/stylesheets/index.css">
+  <script src="player/js/majhdwplayer.js"></script>
+  <script src="player/js/html5.hdwplayer.js"></script>
+  <!--<script type="text/javascript">
     function newWindow(game_name){
       console.log(game_name);
       var myWindow = window.open("#",'_blank', "MsgWindow", "titlebar=yes,fullscreen=yes,width=500,height=500");
@@ -11,33 +15,91 @@
       myWindow.document.write("<head><title>"+game_name+"</title></head>");
       /*
       We will load different javascripts file to process from server
-
+      
       */
-      myWindow.document.write("<p>Cloud part is pending</p>");
+      //myWindow.document.write(' <iframe src="../test"></iframe> ')
+      myWindow.document.write('<iframe src="./../test" height="100%" width="100%"></iframe>')
+
     }
+  </script> -->
+  <script type="text/javascript">
+    console.log('{{user_id}}')
   </script>
+  <script type="text/javascript" src =  "./../../socket.io/socket.io.js" ></script>"></script>
+  <script type="text/javascript" src="./../../js/usergameLoad/main.js"></script>
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    body, html {
+      height: 100%;
+      width: auto;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+  }
+  hr{
+    background-color:orangered;
+  }
+    .container{
+      background-color: black;
+      color:orangered;
+    }
+    .card{
+      margin-bottom: 0.8em;
+      color: orangered;
+    }
+    .card-title{
+      margin-bottom: 1em;
+    }
+  </style>
 </head>
 <body>
   {{> nav}}
   <div class="container">
-    {{> header}}
-    ALL_GAMES
-    <ul>
-      
-      {{#each all_games}}
-        <li>{{this}}   <a href="/purchase/{{this}}">Purchase</a></li>
-      {{/each}}
-    </ul>
-    Purchased
-    <ul>
-      
+   
+   {{> header}}
+    <br>
+    <h4>Purchased</h4>
+    <br>
+    <hr>
+    <div class="row">
       {{#each purchased}}
-        <li>{{this}} <a href="#" onclick="newWindow('{{this}}')" id="play">Play</a></li>
+
+              <div class="col-sm-4">
+              <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="https://i.ytimg.com/vi/tID0e8piECI/maxresdefault.jpg" alt="Card image cap">
+              <div class="card-body">
+              <h5 class="card-title">{{this}}</h5>
+              <a href="/play" target="_blank" onclick="newWindow('{{this}}' , '{{../user_id}}' )" id="play" class="btn btn-primary">Play</a>
+            </div>
+          </div>
+    </div>
+    <br>
       {{/each}}
-    </ul>
-    {{> footer}}
+    
+  </div>
+
+    <h4>ALL GAMES</h4>
+    <br><hr>
+    <div class="row">
+      {{#each all_games}}
+        <div class="col-sm-4">
+              <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="https://i.ytimg.com/vi/tID0e8piECI/maxresdefault.jpg" alt="Card image cap">
+              <div class="card-body">
+              <h5 class="card-title">{{this}}</h5>
+              <a href="/purchase/{{this}}" class="btn btn-primary">Purchase</a>
+            </div>
+          </div>
+    </div>
+    <br>
+      {{/each}}
+      </div>
+    <br>
+    
+    <hr>
   </div>
   </body>
+  {{> footer}}
+  
 </html>
+

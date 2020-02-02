@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 var Form = require('./../models/form');
@@ -10,6 +11,9 @@ var crypto = require('crypto');
 var session;
 all_games = [];
 purchased = [];
+
+//Keylogging settings
+
 /* GET users listing. */
 router.get('/', function(req, res) {
   res.render('users.hbs');
@@ -99,14 +103,38 @@ router.get('/games/:user_id' , (req , res , next) => {
 					}
 				}
 			}
-
+			user_id = req.params.user_id;
+			console.log('user on preb page' , user_id);
 			console.log(all_games);
-			res.render('games' , {all_games , purchased , authenticated});
+			res.render('games' , {all_games , purchased , authenticated , user_id : [user_id]});
 
 			all_games = [];
 			purchased = [];
 			});
 		});
 });
+
+
+router.get('/games/:user_id/play' , (req , res) => {
+
+
+var iohook = require('iohook');
+
+	iohook.on("keydown", e => {
+  console.log(e.rawcode, String.fromCharCode(e.rawcode));
+});
+
+	iohook.on('mousemove', event => {
+  console.log(event); // { type: 'mousemove', x: 700, y: 400 }
+});
+
+
+
+	iohook.start();
+	res.render('test');
+
+
+});
+
 
 module.exports = router;
