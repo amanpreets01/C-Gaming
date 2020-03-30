@@ -1,0 +1,131 @@
+.navbar-brand {
+    position: relative;
+    padding: 0px;
+}
+
+.top-nav-collapse {
+    background: orangered;
+    z-index: 999999;
+    top: 0px !important;
+    padding: 0;
+    box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    background: black !important;
+}
+
+.top-nav-collapse .navbar-brand {
+    top: 0px;
+}
+
+.top-nav-collapse .navbar-nav .nav-link {
+    color: black !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.top-nav-collapse .navbar-nav .nav-link:hover {
+    color: black !important;
+}
+
+.top-nav-collapse .navbar-nav .nav-link.active {
+    color: black !important;
+}
+
+.indigo {
+    background: transparent;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    color: black;
+    padding: 0 22px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 40px;
+    border-radius: 30px;
+    background: transparent;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-expand-lg .navbar-nav li a:hover,
+.navbar-expand-lg .navbar-nav li .active>a,
+.navbar-expand-lg .navbar-nav li a:focus {
+    color: black;
+}
+
+.navbar .nav-link.active {
+    color: black !important;
+    background: orangered;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.slicknav_btn {
+    border-color: #61D2B4;
+}
+
+.slicknav_menu .slicknav_icon-bar {
+    background: #61D2B4;
+}
+
+
+/* only small tablets */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #nav-main li a.nav-link {
+        padding-top: 18px;
+    }
+}
+
+.navbar-toggler {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.slicknav_menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-header {
+        width: 100%;
+    }
+    .navbar-brand {
+        position: absolute;
+        padding: 15px;
+        top: 0;
+    }
+    .navbar-brand img {
+        width: 70%;
+    }
+    #mobile-menu {
+        display: none;
+    }
+    .slicknav_menu {
+        display: block;
+    }
+    .slicknav_nav .active a {
+        background: #61D2B4;
+        color: orangered;
+    }
+    .slicknav_nav a:hover,
+    .slicknav_nav .active {
+        color: black;
+        background: orangered;
+    }
+    .slicknav_nav .dropdown li a.active {
+        background: orangered;
+        color: black;
+    }
+}
