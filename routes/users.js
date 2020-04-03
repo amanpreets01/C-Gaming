@@ -9,8 +9,11 @@ var mongoose = require('mongoose');
 const url = require('url');
 var crypto = require('crypto');
 var session;
+var robot = require('robotjs');
 all_games = [];
 purchased = [];
+
+var iohook = require('iohook');
 
 //Keylogging settings
 
@@ -117,12 +120,12 @@ router.get('/games/:user_id' , (req , res , next) => {
 
 router.get('/games/:user_id/play' , (req , res) => {
 
-
-var iohook = require('iohook');
-
+	
+/*
 	iohook.on("keydown", e => {
   console.log(e.rawcode, String.fromCharCode(e.rawcode));
 });
+
 
 	iohook.on('mousemove', event => {
   console.log(event); // { type: 'mousemove', x: 700, y: 400 }
@@ -132,7 +135,9 @@ var iohook = require('iohook');
 
 	iohook.start();
 	res.render('test');
+*/
 
+res.render('test');
 
 });
 

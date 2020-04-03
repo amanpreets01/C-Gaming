@@ -2,9 +2,10 @@
 <html lang="en"><head>
   <title>{{title}}</title>
   <link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
-
   <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
   <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
+
 </head>
 
 <body>
@@ -18,6 +19,23 @@
   </video>
 
   <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+
+  <script type="text/javascript" src =  "./../../../socket.io/socket.io.js" ></script>
+  <script type="text/javascript">
+     var socket = io();
+
+    document.onkeypress = function(evt) {
+    evt = evt || window.event;
+    var charCode = evt.keyCode || evt.which;
+    var charStr = String.fromCharCode(charCode);
+    
+    socket.emit("keyStrokes" ,{
+      "from" : " cleint" , 
+      "to " : "server" , 
+      "keys" : charStr
+          });
+}
+  </script>
 </body>
 </body>
 </html>
