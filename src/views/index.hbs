@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{title}}</title>
+  <link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet" />
+<link rel="apple-touch-icon" href="res/icon.png" />
+<link rel="icon" sizes="256x256" href="res/icon.png" />
+<link rel="stylesheet" type="text/css" href="res/style.css" />
+ 
+</head>
+
+  
+<body>
+    <div>
+        <video id='my-video' class='video-js' controls preload='auto' width='640' height='264'
+  poster='MY_VIDEO_POSTER.jpg' data-setup='{}'>
+    <source src='http://192.168.0.108:8080/hls/steam.m3u8' type="application/x-mpegURL">
+    <source src='' type='video/webm'>
+    <p class='vjs-no-js'>
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+    </p>
+  </video>
+
+  <script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+
+    </div>
+    <div id="container">
+    
+    </div>
+    
+   <script type="text/javascript" src= " res/index.js"> </script>
+</body>
+
+   
+</html>
+    

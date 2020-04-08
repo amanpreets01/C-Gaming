@@ -137,7 +137,8 @@ router.get('/games/:user_id/play' , (req , res) => {
 	res.render('test');
 */
 
-res.render('test');
+//res.render('test');
+res.redirect('http://192.168.0.108:8000/')
 
 });
 
