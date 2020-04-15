@@ -60082,7 +60082,8 @@ var Mouse = function (_React$PureComponent) {
           onTouchMove: this.handleTouchMove,
           onTouchStart: this.handleTouchStart
         },
-        _react2.default.createElement('span', { className: 'icon icon-mouse' })
+        _react2.default.createElement('span', { className: 'icon icon-mouse' }),
+        
       );
     }
   }]);

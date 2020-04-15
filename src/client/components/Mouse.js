@@ -74,9 +74,12 @@ export default class Mouse extends React.PureComponent {
         onTouchEnd={this.handleTouchEnd}
         onTouchMove={this.handleTouchMove}
         onTouchStart={this.handleTouchStart}
+        style = {{height : this.setState(progress : 200)}}
       >
         <span className='icon icon-mouse' />
       </div>
+
+
     )
   }
 }

@@ -6,9 +6,10 @@ const io = require('socket.io')(http)
 const path = require('path')
 const robot = require('robotjs')
 const hbs = require('hbs')
+const cors = require('cors')
 
 const handleSocket = require('./socket.js')
-
+app.use(cors())
 app.set('view engine', 'pug')
 app.set('view engine' , "hbs")
 app.set('views', path.join(__dirname, '../views'))
